@@ -5,6 +5,8 @@ import clsx from "clsx";
 import Navigation from "@/components/Navigation";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import CookieBanner from "@/components/CookieBanner";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const onest = Onest({
   subsets: ["latin"],
@@ -71,6 +73,8 @@ export default function RootLayout({
             {children}
           </div>
           <CookieBanner />
+          <Analytics />
+          <SpeedInsights />
         </ThemeProvider>
       </body>
     </html>
