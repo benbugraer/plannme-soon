@@ -6,6 +6,7 @@ import { MoveRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Cover } from "./ui/cover";
 import { AnimatedTooltip } from "./ui/animated-tooltip";
+import { Countdown } from "./ui/countdown";
 
 import Nextjs from "@/public/icons/NextIcon";
 import React from "@/public/icons/ReactIcons";
@@ -19,7 +20,7 @@ import tRPC from "@/public/icons/TrcpIcon";
 
 const ease = [0.16, 1, 0.3, 1];
 
-function HeroCreated() {
+function HeroOwner() {
   const bugra = [
     {
       id: 1,
@@ -34,7 +35,7 @@ function HeroCreated() {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease }}
-      className="flex items-center mb-6"
+      className="flex items-center mb-12"
     >
       <div className="flex gap-5">
         <div className="flex flex-row items-center justify-center ">
@@ -64,6 +65,41 @@ function HeroCreated() {
   );
 }
 
+function HeroDescription() {
+  return (
+    <motion.p
+      className="max-w-2xl mx-auto text-center text-base text-secondary mt-12"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: 0.8,
+        delay: 1.2,
+        ease: [0.16, 1, 0.3, 1],
+      }}
+    >
+      PlannMe, randevu yönetimini basitleştiren modern bir platformdur. İster
+      bireysel ister kurumsal olsun, randevularınızı kolayca planlayın, yönetin
+      ve takip edin. Kullanıcı dostu arayüzü ve gelişmiş özellikleriyle zaman
+      yönetimini daha verimli hale getirin.
+    </motion.p>
+  );
+}
+
+function HeroCountdown() {
+  const targetDate = new Date("2025-03-20T00:00:00");
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8, delay: 1.4 }}
+      className="w-full max-w-3xl mx-auto mt-12"
+    >
+      <Countdown targetDate={targetDate} />
+    </motion.div>
+  );
+}
+
 function HeroTitles() {
   return (
     <div className="flex w-full max-w-5xl flex-col space-y-4 overflow-hidden">
@@ -78,12 +114,6 @@ function HeroTitles() {
         }}
       >
         {[
-          "Randevularınızı",
-          "Planlamanın",
-          "En Kolay",
-          "Ve",
-          "En Basit",
-          "Yolu",
           <Cover key="plannme">
             {" "}
             <span className="font-bold">P</span>
@@ -93,7 +123,7 @@ function HeroTitles() {
           </Cover>,
           "Çok",
           "Yakında",
-          "Hizmetinizde",
+          "Geliyor",
         ].map((text, index) => (
           <motion.span
             key={index}
@@ -110,7 +140,6 @@ function HeroTitles() {
           </motion.span>
         ))}
       </motion.h1>
-
       <motion.div className="mx-auto max-w-xl text-center leading-10 lg:leading-6 text-muted-foreground lg:flex">
         <motion.span
           initial={{ opacity: 0, y: 20 }}
@@ -120,7 +149,7 @@ function HeroTitles() {
             duration: 0.8,
             ease,
           }}
-          className="mr-3"
+          className="mr-3 text-sm"
         >
           Modern Teknolojiler ile Geliştiriyoruz:
         </motion.span>
@@ -229,9 +258,11 @@ function HeroEmail() {
 export default function HeroSection() {
   return (
     <section id="hero">
-      <div className="relative flex w-full flex-col items-center justify-start px-4  sm:px-6 sm:pt-24 md:pt-12 lg:px-8 ">
-        <HeroCreated />
+      <div className="relative flex w-full flex-col items-center justify-start px-4 sm:px-6 sm:pt-24 md:pt-8 lg:px-8 ">
+        <HeroOwner />
         <HeroTitles />
+        <HeroDescription />
+        <HeroCountdown />
         <HeroEmail />
       </div>
     </section>
