@@ -7,6 +7,9 @@ import { cn } from "@/lib/utils";
 import { Cover } from "./ui/cover";
 import { AnimatedTooltip } from "./ui/animated-tooltip";
 import { Countdown } from "./ui/countdown";
+import { Input } from "./ui/input";
+import { Button } from "./ui/button";
+import Particles from "./ui/particles";
 
 import Nextjs from "@/public/icons/NextIcon";
 import React from "@/public/icons/ReactIcons";
@@ -34,7 +37,7 @@ function HeroOwner() {
     <motion.div
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease }}
+      transition={{ duration: 0.8, delay: 0.2, ease }}
       className="flex items-center mb-12"
     >
       <div className="flex gap-5">
@@ -44,7 +47,7 @@ function HeroOwner() {
         <div className="z-10 flex items-center justify-center">
           <div
             className={cn(
-              "group rounded-full border border-primary  text-base  transition-all ease-in hover:cursor-pointer bg-black dark:bg-white dark:hover:bg-tertiary hover:bg-tertiary"
+              "group rounded-lg border border-primary  text-base hover:cursor-pointer bg-black dark:bg-white dark:hover:bg-tertiary hover:bg-tertiary ease-linear duration-200 transition-colors"
             )}
           >
             <div className="inline-flex text-xs lg:text-sm items-center justify-center px-4 py-1 transition ease-out text-white dark:text-black group-hover:text-primary group-hover:dark:text-primary">
@@ -73,7 +76,7 @@ function HeroDescription() {
       animate={{ opacity: 1, y: 0 }}
       transition={{
         duration: 0.8,
-        delay: 1.2,
+        delay: 1.6,
         ease: [0.16, 1, 0.3, 1],
       }}
     >
@@ -93,8 +96,14 @@ function HeroCountdown() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8, delay: 1.4 }}
-      className="w-full max-w-3xl mx-auto mt-12"
+      className="relative flex h-[200px] w-full flex-col items-center justify-center overflow-hidden rounded-lg border border-primary bg-tertiary md:shadow-xl"
     >
+      <Particles
+        className="absolute inset-0 z-0"
+        quantity={100}
+        ease={80}
+        refresh
+      />
       <Countdown targetDate={targetDate} />
     </motion.div>
   );
@@ -104,11 +113,12 @@ function HeroTitles() {
   return (
     <div className="flex w-full max-w-5xl flex-col space-y-4 overflow-hidden">
       <motion.h1
-        className="text-center text-[1.6rem] md:text-3xl lg:text-5xl font-medium leading-tight pb-6"
+        className="text-center text-[2rem] md:text-3xl lg:text-6xl font-medium leading-tight pb-6"
         initial={{ filter: "blur(10px)", opacity: 0, y: 50 }}
         animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
         transition={{
           duration: 1,
+          delay: 0.4,
           ease,
           staggerChildren: 0.2,
         }}
@@ -145,7 +155,7 @@ function HeroTitles() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
-            delay: 1.4,
+            delay: 1.0,
             duration: 0.8,
             ease,
           }}
@@ -161,7 +171,7 @@ function HeroTitles() {
             show: {
               transition: {
                 staggerChildren: 0.1,
-                delayChildren: 1.6,
+                delayChildren: 1.2,
               },
             },
           }}
@@ -239,31 +249,55 @@ function HeroTitles() {
 function HeroEmail() {
   return (
     <motion.div
-      className="flex gap-3"
-      variants={{
-        hidden: {},
-        show: {
-          transition: {
-            staggerChildren: 0.2,
-            delayChildren: 2.0, // Start after icons animation
-          },
-        },
-      }}
-      initial="hidden"
-      animate="show"
-    ></motion.div>
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8, delay: 1.8 }}
+      className="relative flex h-[200px] w-full flex-col items-center justify-center overflow-hidden rounded-lg border border-primary bg-tertiary md:shadow-xl"
+    >
+      <Particles
+        className="absolute inset-0 z-0"
+        quantity={100}
+        ease={80}
+        refresh
+      />
+      <motion.h1
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 2.2 }}
+        className="text-center text-base text-secondary"
+      >
+        Gelişmelerden haberdar olmak için
+      </motion.h1>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 2.2 }}
+        className="flex gap-2 mt-4"
+      >
+        <Input
+          type="email"
+          placeholder="Email adresiniz"
+          className="bg-primary relative z-10 border border-primary w-30 lg:w-80"
+        />
+        <Button variant="default" disabled>
+          Kaydol
+        </Button>
+      </motion.div>
+    </motion.div>
   );
 }
 
 export default function HeroSection() {
   return (
     <section id="hero">
-      <div className="relative flex w-full flex-col items-center justify-start px-4 sm:px-6 sm:pt-24 md:pt-8 lg:px-8 ">
+      <div className="relative flex w-full flex-col items-center justify-start px-4 sm:px-6 sm:pt-24 md:pt-8 lg:px-8">
         <HeroOwner />
         <HeroTitles />
         <HeroDescription />
-        <HeroCountdown />
-        <HeroEmail />
+        <div className="w-full max-w-6xl gap-6 mt-12 flex flex-col md:flex-row justify-between items-start">
+          <HeroCountdown />
+          <HeroEmail />
+        </div>
       </div>
     </section>
   );
