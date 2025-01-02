@@ -252,7 +252,7 @@ function HeroEmail() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8, delay: 1.8 }}
-      className="relative flex h-[200px] w-full flex-col items-center justify-center overflow-hidden rounded-lg border border-primary bg-tertiary md:shadow-xl"
+      className="relative flex h-[200px] w-full flex-col items-center justify-center overflow-hidden rounded-lg border border-primary bg-tertiary md:shadow-xl mb-16"
     >
       <Particles
         className="absolute inset-0 z-0"
@@ -264,7 +264,7 @@ function HeroEmail() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 2.2 }}
-        className="text-center text-base text-secondary"
+        className="text-center text-base text-primary uppercase"
       >
         Gelişmelerden haberdar olmak için
       </motion.h1>

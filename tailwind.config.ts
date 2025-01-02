@@ -23,14 +23,6 @@ const config = {
         secondary: "var(--gray-11)",
         tertiary: "var(--gray-9)",
         link: "var(--blue-11)",
-        react: "#61dafb",
-        typescript: "#007acc",
-        javascript: "#f0db4f",
-        next: "#000",
-        redux: "#764abc",
-        framer: "#0099FF",
-        tailwind: "#38BDF8",
-        ts: " #3178c6",
       },
       backgroundColor: {
         contrast: "var(--contrast-color)",
@@ -48,6 +40,9 @@ const config = {
       },
       ringOffsetColor: {
         primary: "var(--gray-12)",
+      },
+      ringColor: {
+        primary: "var(--gray-11)",
       },
       boxShadow: {
         soft: "0 15px 30px 0 rgba(0, 0, 0, 0.04)",
