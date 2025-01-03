@@ -10,6 +10,8 @@ import { Countdown } from "./ui/countdown";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import Particles from "./ui/particles";
+import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 import Nextjs from "@/public/icons/NextIcon";
 import React from "@/public/icons/ReactIcons";
@@ -38,29 +40,28 @@ function HeroOwner() {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 0.2, ease }}
-      className="flex items-center mb-12"
+      className="flex items-center mb-12 gap-6"
     >
       <div className="flex gap-5">
-        <div className="flex flex-row items-center justify-center ">
-          <AnimatedTooltip items={bugra} />
-        </div>
-        <div className="z-10 flex items-center justify-center">
-          <div
-            className={cn(
-              "group rounded-lg border border-primary  text-base hover:cursor-pointer bg-black dark:bg-white dark:hover:bg-tertiary hover:bg-tertiary ease-linear duration-200 transition-colors"
-            )}
-          >
-            <div className="inline-flex text-xs lg:text-sm items-center justify-center px-4 py-1 transition ease-out text-white dark:text-black group-hover:text-primary group-hover:dark:text-primary">
-              <a
-                href="https://github.com/benbugraer"
-                target="_blank"
-                className="flex gap-1"
-              >
-                <span className="font-bold">Bugra Er</span>
-                <p> tarafından oluşturulmakta.</p>
-              </a>
-              <MoveRight className="ml-3 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
-            </div>
+        <div className="flex flex-row items-center justify-center "></div>
+        <AnimatedTooltip items={bugra} />
+      </div>
+      <div className="z-10 flex items-center justify-center">
+        <div
+          className={cn(
+            "group rounded-lg border border-primary  text-base hover:cursor-pointer bg-black dark:bg-white dark:hover:bg-tertiary hover:bg-tertiary ease-linear duration-200 transition-colors"
+          )}
+        >
+          <div className="inline-flex text-xs lg:text-sm items-center justify-center px-4 py-1 transition ease-out text-white dark:text-black group-hover:text-primary group-hover:dark:text-primary">
+            <a
+              href="https://github.com/benbugraer"
+              target="_blank"
+              className="flex gap-1"
+            >
+              <span className="font-bold">Bugra Er</span>
+              <p> tarafından oluşturulmakta.</p>
+            </a>
+            <MoveRight className="ml-3 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
           </div>
         </div>
       </div>
@@ -247,11 +248,59 @@ function HeroTitles() {
 }
 
 function HeroEmail() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
+  const { toast } = useToast();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("loading");
+
+    try {
+      const response = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error);
+      }
+
+      setStatus("success");
+      toast({
+        variant: "default",
+        title: "Başarılı!",
+        description: "Aboneliğiniz başarıyla tamamlandı!",
+        className: "bg-green-500 text-white border-none",
+      });
+      setEmail("");
+    } catch (error) {
+      setStatus("error");
+      toast({
+        variant: "destructive",
+        title: "Hata!",
+        description:
+          error instanceof Error
+            ? error.message
+            : "Abonelik işlemi başarısız oldu.",
+      });
+    }
+  };
+
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.8, delay: 1.8 }}
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{
+        duration: 0.8,
+        delay: 1.8,
+        ease: [0.16, 1, 0.3, 1],
+      }}
       className="relative flex h-[200px] w-full flex-col items-center justify-center overflow-hidden rounded-lg border border-primary bg-tertiary md:shadow-xl mb-16"
     >
       <Particles
@@ -261,28 +310,56 @@ function HeroEmail() {
         refresh
       />
       <motion.h1
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 2.2 }}
+        transition={{
+          duration: 0.8,
+          delay: 2.2,
+          ease: [0.16, 1, 0.3, 1],
+        }}
         className="text-center text-base text-primary uppercase"
       >
         Gelişmelerden haberdar olmak için
       </motion.h1>
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 2.2 }}
-        className="flex gap-2 mt-4"
+      <motion.form
+        onSubmit={handleSubmit}
+        initial={{ opacity: 0, x: -30 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{
+          duration: 0.8,
+          delay: 2.2,
+          ease: [0.16, 1, 0.3, 1],
+        }}
+        className="flex flex-col items-center gap-2 mt-4"
       >
-        <Input
-          type="email"
-          placeholder="Email adresiniz"
-          className="bg-primary relative z-10 border border-primary w-30 lg:w-80"
-        />
-        <Button variant="default" disabled>
-          Kaydol
-        </Button>
-      </motion.div>
+        <motion.div
+          className="flex gap-2"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{
+            duration: 0.5,
+            delay: 2.4,
+            ease: [0.16, 1, 0.3, 1],
+          }}
+        >
+          <Input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email adresiniz"
+            className="bg-primary relative z-10 border border-primary w-30 lg:w-80 transition-all duration-300 hover:border-opacity-80"
+            disabled={status === "loading"}
+          />
+          <Button
+            variant="default"
+            type="submit"
+            disabled={status === "loading"}
+            className="transition-all duration-300 hover:scale-105"
+          >
+            {status === "loading" ? "Gönderiliyor..." : "Kaydol"}
+          </Button>
+        </motion.div>
+      </motion.form>
     </motion.div>
   );
 }

@@ -34,7 +34,7 @@ const social = [
 export default function Navigation() {
   return (
     <header
-      className="w-full max-w-[1440px] px-4 md:px-[34px]  left-1/2 z-50 mx-auto mb-8 flex -translate-x-1/2 items-center justify-between py-5 lg:mt-6 lg:max-w-[min(1150px,calc(100vw-24px))] lg:rounded-2xl lg:py-0 bg-tertiary border border-primary animate-in-reverse"
+      className="w-full max-w-[1440px]  md:px-[34px] left-1/2 z-50 mx-auto mb-8 flex -translate-x-1/2 items-center justify-between py-5 lg:mt-6 lg:max-w-[min(1150px,calc(100vw-24px))] lg:rounded-2xl lg:py-0 bg-tertiary border border-primary animate-in-reverse"
       style={{ "--index": 0 } as CSSProperties}
     >
       <div className="container flex h-14 items-center w-full">
@@ -45,20 +45,23 @@ export default function Navigation() {
             </Link>
           </h1>
         </nav>
-        <nav className="flex  items-center justify-end ml-auto">
-          {social.map((social) => (
-            <a
-              target="_blank"
-              key={social.url}
-              href={social.url}
-              title={social.title}
-              className="inline-flex text-tertiary items-center justify-center  text-sm font-medium transition-colors  rounded-full focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-primary duration-500 hover:duration-500 hover:text-accent-foreground h-9 py-2 w-9"
-            >
-              {social.icon}
-            </a>
-          ))}
-          <div className="ml-2">
-            <ThemeSwitcher />
+
+        <nav className="flex items-center justify-end ml-auto">
+          <div className="flex gap-1 sm:gap-2 items-center">
+            {social.map((social) => (
+              <a
+                target="_blank"
+                key={social.url}
+                href={social.url}
+                title={social.title}
+                className="inline-flex text-tertiary items-center justify-center text-sm font-medium transition-colors rounded-full focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-primary duration-500 hover:duration-500 hover:text-accent-foreground h-8 w-8 sm:h-9 sm:w-9"
+              >
+                {social.icon}
+              </a>
+            ))}
+            <div className="ml-1 sm:ml-2">
+              <ThemeSwitcher />
+            </div>
           </div>
         </nav>
       </div>

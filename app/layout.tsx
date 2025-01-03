@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import CookieBanner from "@/components/CookieBanner";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Toaster } from "@/components/ui/toaster";
 
 const onest = Onest({
   subsets: ["latin"],
@@ -75,6 +76,7 @@ export default function RootLayout({
           <CookieBanner />
           <Analytics />
           <SpeedInsights />
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
