@@ -4,7 +4,7 @@
 
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
-import WelcomeEmail from "@/emails/welcome";
+import WelcomeEmail from "@/app/emails/welcome";
 
 // Environment variables kontrolü
 if (!process.env.RESEND_API_KEY) {
