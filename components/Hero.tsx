@@ -90,7 +90,7 @@ function HeroDescription() {
 }
 
 function HeroCountdown() {
-  const targetDate = new Date("2025-03-31T00:00:00");
+  const targetDate = new Date("2025-04-15T00:00:00");
 
   return (
     <motion.div
