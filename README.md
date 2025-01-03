@@ -1,36 +1,32 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Plannme Coming Soon
 
-## Getting Started
+Modern ve minimalist bir yaklaşımla hazırlanmış, yakında piyasaya sürülecek MVP projemizin ön duyuru websitesi.
 
-First, run the development server:
+![MVP Coming Soon Preview](public/mockups/flat-plannme.jpeg)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Teknoloji Altyapısı
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Next.js 15
+- TypeScript
+- Tailwind CSS
+- Email Integration
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Özellikler
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- ⚡️ Yüksek performanslı modern web deneyimi
+- 📱 Tam responsive tasarım
+- 🎨 Minimalist ve şık arayüz
+- 📧 Bülten kayıt sistemi
+- 🌙 Karanlık/Aydınlık mod
 
-## Learn More
+## Plannme Nedir?
 
-To learn more about Next.js, take a look at the following resources:
+Plannme, firmaların ve kişilerin randevularını programlayabileceği, müşterilerinin kayıtlarını tutabileceği, takım planlamasını yapabileceği, firmanın gelir gider hesaplarını görebileceği bir uygulamadır.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Plannme Ne Zaman Çıkıyor?
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Hedefimiz uygulamamızı 31/03/2025 tarihinnde piyasa sunmak.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+© 2024 MVP Coming Soon. Tüm hakları saklıdır.
