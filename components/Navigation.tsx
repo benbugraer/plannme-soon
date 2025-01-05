@@ -15,7 +15,7 @@ const social = [
     title: "GitHub",
   },
   {
-    url: "https://x.com/benbugraer",
+    url: "https://www.linkedin.com/company/plannme/",
     icon: <LinkedIn className="w-4 h-4" />,
     title: "LinkedIn",
   },
@@ -41,7 +41,7 @@ export default function Navigation() {
         <nav className="flex container items-center justify-end text-center w-full">
           <h1 className="mr-auto">
             <Link href="/" className="text-2xl tracking-tighter font-bold">
-              PlannMe
+              .PlannMe
             </Link>
           </h1>
         </nav>
